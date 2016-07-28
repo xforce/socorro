@@ -17,7 +17,7 @@ class IndexCleaner(RequiredConfig):
     required_config = Namespace()
     required_config.add_option(
         'retention_policy',
-        default=26,
+        default=22,
         doc='Number of weeks to keep an index alive. ',
     )
     required_config.namespace('elasticsearch')
