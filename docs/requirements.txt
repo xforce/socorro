@@ -1,2 +1,21 @@
-sphinx==1.4.5
-sphinx-rtd-theme==0.1.10a0
+Sphinx==1.4.5 \
+    --hash=sha256:a1901af3d437473662daca2ee8f03c232d84af08a0b119d6bc55020661b12ab8
+sphinx-rtd-theme==0.1.10a0 \
+    --hash=sha256:1225df3fc8337b14d53779435381b7f7705b9f4819610f6b74e555684cee2ac4
+
+Babel==2.3.4 \
+    --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975
+snowballstemmer==1.2.1 \
+    --hash=sha256:9f3bcd3c401c3e862ec0ebe6d2c069ebc012ce142cce209c098ccb5b09136e89
+Pygments==2.1.3 \
+    --hash=sha256:485602129949b14247e8b124d28af4654dffbd076537c4a9c44a538a2c1755b7
+docutils==0.12 \
+    --hash=sha256:c7db717810ab6965f66c8cf0398a98c9d8df982da39b4cd7f162911eb89596fa
+imagesize==0.7.1 \
+    --hash=sha256:6ebdc9e0ad188f9d1b2cdd9bc59cbe42bf931875e829e7a595e6b3abdc05cdfb
+alabaster==0.7.9 \
+    --hash=sha256:d3e64a74919373d6d4d1d36bd717206584cb64cbb0532dfce3bc2081cba6817b
+pytz==2016.6.1 \
+    --hash=sha256:7833bf559800232d3965b70e69642ebdadc76f7988f8d0a1440e072193ecd949
+
+-r ../requirements.txt
