@@ -142,8 +142,8 @@ Use cases:
 
 * For Mozilla use by the collectors.
 * For other users, you can use this class as your primary storage instead of
-HBase. Be sure to implement this in collectors, crashmovers, processors and
-middleware (depending on which components you use in your configuration).
+  HBase. Be sure to implement this in collectors, crashmovers, processors and
+  middleware (depending on which components you use in your configuration).
 
 `Important ops note:`
 Because of the slowness of deleting directories created by on-disk, non-SSD

@@ -4,6 +4,7 @@
 
 Installing services
 ===================
+
 .. sidebar:: Breakpad client and symbols
 
    Socorro aggregates and reports on Breakpad crashes.
@@ -28,12 +29,14 @@ architecture, and so on.
 
 1. Clone the Socorro repository:
 ::
+
   git clone git://github.com/mozilla/socorro.git
   cd socorro
 
 2. Provision the VM:
 ::
- vagrant up
+
+  vagrant up
 
 This step will:
 
@@ -44,11 +47,13 @@ This step will:
 
 3. Add entries to ``/etc/hosts`` on the **HOST** machine:
 ::
+
   10.11.12.13 crash-stats crash-reports socorro-api
 
 You can get a shell in the VM as the user "vagrant" by running this
 in your Socorro source checkout:
 ::
+
   vagrant ssh
 
 Your git checkout on the host will automatically be shared with the VM in
@@ -62,21 +67,25 @@ RHEL/CentOS 6
 Install the `EPEL repository <http://fedoraproject.org/wiki/EPEL>`_ (note that
 while the EPEL package is from an `i386` tree it will work on `x86_64`):
 ::
+
   sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 
 Install the `PostgreSQL repository <http://yum.pgrpms.org/repopackages.php>`_.
 This package will vary depending on your distribution and environment.
 For example if you are running RHEL 6 on i386, you would do this:
 ::
+
   sudo rpm -ivh http://yum.postgresql.org/9.3/redhat/rhel-6-i386/pgdg-centos93-9.3-1.noarch.rpm
 
 Install the `Elasticsearch repository <http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-repositories.html>`_.
 First the key:
 ::
+
   sudo rpm --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch
 
 Then the repository definition:
 ::
+
   sudo tee /etc/yum.repos.d/elasticsearch.repo >/dev/null <<EOF
   [elasticsearch-0.90]
   name=Elasticsearch repository for 0.90.x packages
@@ -88,6 +97,7 @@ Then the repository definition:
 
 Now you can actually install the packages:
 ::
+
   sudo yum install postgresql93-server postgresql93-plperl \
     postgresql93-contrib postgresql93-devel subversion make rsync \
     subversion gcc-c++ python-devel python-pip mercurial nodejs-less \
@@ -96,35 +106,42 @@ Now you can actually install the packages:
 
 Enable Apache on startup:
 ::
+
   sudo service httpd start
   sudo chkconfig httpd on
 
 Enable Memcached on startup:
 ::
+
   sudo service memcached start
   sudo chkconfig memcached on
 
 Enable RabbitMQ on startup:
 ::
+
   sudo service rabbitmq-server start
   sudo chkconfig rabbitmq-server on
 
 Initialize and enable PostgreSQL on startup:
 ::
+
   sudo service postgresql-9.3 initdb
   sudo service postgresql-9.3 start
   sudo chkconfig postgresql-9.3 on
 
 Modify postgresql config
 ::
+
   sudo vi /var/lib/pgsql/9.3/data/postgresql.conf
 
 Ensure that timezone is set to UTC
 ::
+
   timezone = 'UTC'
 
 Allow local connections for PostgreSQL
 ::
+
   sudo vi /var/lib/pgsql/9.3/data/pg_hba.conf
 
 Ensure that local connections are allowed:
@@ -140,6 +157,7 @@ for more information on this file.
 
 You'll need to restart postgresql if the configuration was updated:
 ::
+
   sudo service postgresql-9.3 restart
 
 Ubuntu 14.04 (Trusty)
@@ -147,6 +165,7 @@ Ubuntu 14.04 (Trusty)
 
 Add public keys for PostgreSQL and ElasticSearch Apt Repositories:
 ::
+
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
     sudo apt-key add -
   wget --quiet -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | \
@@ -154,6 +173,7 @@ Add public keys for PostgreSQL and ElasticSearch Apt Repositories:
 
 Install dependencies
 ::
+
   sudo apt-get install python-software-properties
   # postgresql 9.3
   sudo apt-add-repository 'deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main'
@@ -168,18 +188,22 @@ Install dependencies
 
 Modify postgresql config
 ::
+
   sudo vi /etc/postgresql/9.3/main/postgresql.conf
 
 Ensure that timezone is set to UTC
 ::
+
   timezone = 'UTC'
 
 Allow local connections for PostgreSQL
 ::
+
   sudo vi /etc/postgresql/9.3/main/pg_hba.conf
 
 Ensure that local connections are allowed:
 ::
+
   # IPv4 local connections:
   host    all             all             127.0.0.1/32            md5
   # IPv6 local connections:
@@ -190,6 +214,7 @@ for more information on this file.
 
 Restart PostgreSQL to activate config changes, if the above was changed
 ::
+
   sudo /usr/sbin/service postgresql restart
 
 Mac OS X
@@ -197,6 +222,7 @@ Mac OS X
 
 Install dependencies
 ::
+
   brew update
   brew install git gpp postgresql subversion rabbitmq memcached npm
   sudo easy_install virtualenv virtualenvwrapper pip
@@ -205,31 +231,38 @@ Install dependencies
 
 Set your PATH
 ::
+
   export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 Initialize and run PostgreSQL
 ::
+
   initdb -D /usr/local/pgsql/data -E utf8
   export PGDATA=/usr/local/pgsql/data
   pg_ctl start
 
 Create a symbolic link to pgsql_socket
 ::
+
   mkdir /var/pgsql_socket/
   ln -s /private/tmp/.s.PGSQL.5432 /var/pgsql_socket/
 
 Modify postgresql config
 ::
+
   sudo editor /usr/local/pgsql/data/postgresql.conf
 
 Ensure that timezone is set to UTC
 ::
+
   timezone = 'UTC'
 
 Restart PostgreSQL to activate config changes, if the above was changed
 ::
+
   pg_ctl restart
 
 Start RabbitMQ
 ::
+
   rabbitmq-server

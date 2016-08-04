@@ -109,15 +109,11 @@ of OOID.
 .. toctree::
    :maxdepth: 2
 
-   deferredjobstorage
    jsondumpstorage
    processeddumpstorage
-   standardjobstorage
    topcrashersbysignature
    signaturegeneration
    crashmover
    collector
    reporter
-   monitor
    filesystem
-   deferredcleanup

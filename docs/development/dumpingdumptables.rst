@@ -56,7 +56,7 @@ Webhead will serve these files as::
   Content-Type: application/json; charset=utf-8
   Content-Encoding: gzip
 
-**Note:* You'd expect the dump files to be named json.gz, but this is
+**Note:** You'd expect the dump files to be named json.gz, but this is
 broken in Safari. By setting HTTP headers and naming the file jsonz,
 an unknown file extension, this works across browsers.
 

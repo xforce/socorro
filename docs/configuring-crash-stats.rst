@@ -38,31 +38,44 @@ Install PostgreSQL
 ------------------
 
 Install the PostgreSQL repository.
+
 ::
+
   sudo rpm -ivh http://yum.postgresql.org/9.3/redhat/rhel-7-x86_64/pgdg-centos93-9.3-1.noarch.rpm
 
 Now you can actually install the packages:
+
 ::
+
   sudo yum install postgresql93-server postgresql93-contrib
 
 Initialize and enable PostgreSQL on startup:
+
 ::
+
   sudo /usr/pgsql-9.3/bin/postgresql93-setup initdb
   sudo systemctl enable postgresql-9.3
 
 Modify postgresql config
+
 ::
+
   sudo vi /var/lib/pgsql/9.3/data/postgresql.conf
 
 Ensure that timezone is set to UTC
+
 ::
+
   timezone = 'UTC'
 
 Allow local connections for PostgreSQL
+
 ::
+
   sudo vi /var/lib/pgsql/9.3/data/pg_hba.conf
 
 Ensure that local connections are allowed:
+
 ::
 
   # IPv4 local connections:
@@ -74,9 +87,12 @@ See http://www.postgresql.org/docs/9.3/static/auth-pg-hba-conf.html
 for more information on this file.
 
 You'll need to restart postgresql if the configuration was updated:
+
 ::
+
   sudo systemctl restart postgresql-9.3
 
+   
 Create database, set up schema
 ------------------------------
 
@@ -284,7 +300,9 @@ Create partitioned tables
 Normally this is handled automatically by the cronjob scheduler
 :ref:`crontabber-chapter` but should be run as a one-off to create the PostgreSQL partitioned tables for processor
 to write crashes to:
+
 ::
+
   sudo setup-socorro.sh admin
 
 Start services
@@ -374,7 +392,9 @@ used as defaults and show up in all reports:
 http://crash-stats/admin/featured-versions/
 
 Make sure to restart memcached so you see your changes right away:
+
 ::
+
   sudo systemctl restart memcached
 
 Now go to the front page for your application. For example, if your application
@@ -391,7 +411,9 @@ of crashes per install.
 
 You should insert an ADI number (or estimate) for each day per release into
 the raw_adi table in PostgreSQL:
+
 ::
+
   psql breakpad
   -- args: adi_count, date, product_name, product_os_platform,
   --       product_os_version, product_version, build, product_guid,
@@ -415,12 +437,16 @@ automatically partitioning and discarding data in our data stores.
 
 For automatic, date-based partitioning, we have crontabber jobs that create
 partitions weekly based on data in the table:
+
 ::
+
   report_partition_info
 
 We currently manage which tables are partitioned manually by inserting rows into
 the production PostgreSQL database.
+
 ::
+
     psql breakpad
     -- Add reports_duplicates table to automatic partitioning
     WITH bo AS (
@@ -434,7 +460,9 @@ the production PostgreSQL database.
        FROM bo
 
 Tables commonly partitioned include:
+
 ::
+
    reports
    reports_clean
    raw_crashes

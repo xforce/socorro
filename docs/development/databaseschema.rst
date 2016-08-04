@@ -65,7 +65,7 @@ Holds a lot of data about each crash report::
      release_channel     | text                     | 
      productid           | text                     | 
 
-Indexes and FKs from a child table: 
+Indexes and FKs from a child table::
 
     Indexes:
         "reports_20121015_pkey" PRIMARY KEY, btree (id)
@@ -102,7 +102,8 @@ Holds data about what extensions are associated with a given report::
      extension_version | text                     | 
 
 
-Partitioned Child Table
+Partitioned Child Table::
+
     Indexes:
         "extensions_20121015_pkey" PRIMARY KEY, btree (report_id, extension_key)
         "extensions_20121015_extension_id_extension_version_idx" btree (extension_id, extension_version)

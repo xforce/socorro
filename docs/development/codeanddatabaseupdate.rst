@@ -92,7 +92,7 @@ Viewable Interface
 Consequences of Possible Changes
 --------------------------------
 
- * (Only) Add new tables (two kinds of changes)
+* (Only) Add new tables (two kinds of changes)
     * "replace in place", for instance add table reports_normal while leaving table reports in place)
     * "brand new", for instance add new productdims and osdims tables to serve a new tobcrashbysignature table
     * Existing views are not impacted (for good or ill)

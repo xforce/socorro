@@ -3,7 +3,7 @@
 .. _build-pkg-from-source-chapter:
 
 Build package from source
-=====================
+=========================
 
 RHEL (or clones e.g. CentOS)
 ----------------------------
@@ -22,10 +22,11 @@ From inside the Socorro checkout:
 
 This will create a Socorro RPM in the current directory:
 ::
+
   sudo rpm -i socorro-*.rpm
 
 Debian/Ubuntu
-----------------------------
+-------------
 
 Install the fpm dependency for deb build
 ::
@@ -45,6 +46,7 @@ From inside the Socorro checkout:
 
 This will create a Socorro deb in the current directory:
 ::
+
   sudo dpkg -i socorro_*.deb
 
 

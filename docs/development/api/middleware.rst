@@ -1137,7 +1137,7 @@ Return an object like the following::
     }
 
 Crashes per ADU By Signature service
-------------------------------
+------------------------------------
 
 Return a list of crash and ADU counts by signature.
 

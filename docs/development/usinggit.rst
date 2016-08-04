@@ -10,7 +10,7 @@ Using Git and GitHub can be tricky.  The guide on this page will help you do
 things correctly and in the right order, to avoid hand-wringing and cursing.
 The sections should be followed in order: first setup GitHub, then setup Git,
 before you start developing.  This guide assumes you are using a command line
-interface in a *nix environment like OS X or Ubuntu.
+interface in a \*nix environment like OS X or Ubuntu.
 
 .. _how-to-setup-github:
 

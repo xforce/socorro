@@ -8,5 +8,5 @@ Reporter
 
 Deprecated.
 
-See :ref:`uiinstallation-chapter`_ 
+See :ref:`uiinstallation-chapter`
 
