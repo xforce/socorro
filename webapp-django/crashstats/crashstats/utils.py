@@ -244,9 +244,7 @@ def build_default_context(product=None, versions=None):
         active_versions[pv['product']].append(pv)
     context['active_versions'] = active_versions
 
-    if versions is None:
-        versions = []
-    elif isinstance(versions, basestring):
+    if isinstance(versions, basestring):
         versions = versions.split(';')
 
     if product:
