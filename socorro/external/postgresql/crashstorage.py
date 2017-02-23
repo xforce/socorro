@@ -155,13 +155,16 @@ class PostgreSQLBasicCrashStorage(CrashStorageBase):
         for pro_crash_name, report_name, length in (
             self._reports_table_mappings
         ):
-            column_list.append(report_name)
-            placeholder_list.append('%s')
-            value = processed_crash[pro_crash_name]
-            if isinstance(value, basestring) and length:
-                    value_list.append(value[:length])
-            else:
-                value_list.append(value)
+            try:
+                value = processed_crash[pro_crash_name]
+                column_list.append(report_name)
+                placeholder_list.append('%s')
+                if isinstance(value, basestring) and length:
+                        value_list.append(value[:length])
+                else:
+                    value_list.append(value)
+            except KeyError:
+                print "Unknown Key" + pro_crash_name
 
         def print_eq(a, b):
             # Helper for UPDATE SQL clause
