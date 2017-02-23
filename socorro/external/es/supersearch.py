@@ -7,7 +7,7 @@ import re
 from collections import defaultdict
 
 from elasticsearch.exceptions import NotFoundError, RequestError
-from elasticsearch_dsl import A, F, Q, Search
+from elasticsearch_dsl import A, Q, Search
 from socorro.lib import (
     BadArgumentError,
     MissingArgumentError,
@@ -346,7 +346,7 @@ class SuperSearch(SearchBase):
                     args[name] = filter_value
 
                 if args:
-                    new_filter = F(filter_type, **args)
+                    new_filter = Q(filter_type, **args)
                     if param.operator_not:
                         new_filter = ~new_filter
 
@@ -362,7 +362,7 @@ class SuperSearch(SearchBase):
             if sub_filters is not None:
                 filters.append(sub_filters)
 
-        search = search.filter(F('bool', must=filters))
+        search = search.filter(Q('bool', must=filters))
 
         # Restricting returned fields.
         fields = []
